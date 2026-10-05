@@ -12,3 +12,18 @@ pyingest = "pyingest:main"
 [build-system]
 requires = ["uv_build>=0.12.23,<0.13.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.6.2",
+    "ruff>=0.16.10",
+]
+
+[tool.ruff]
+line-length=88
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]  # Error, Pyflakes, ISort
+
+[tool.ruff.format]
+quote-style = "double"
