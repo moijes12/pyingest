@@ -33,3 +33,12 @@ select = ["E", "F", "I"]  # Error, Pyflakes, ISort
 
 [tool.ruff.format]
 quote-style = "double"
+
+[tool.mypy]
+python_version = ">=3.14"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+
+mypy_path = "src"
+explicit_package_bases=true
