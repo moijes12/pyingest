@@ -7,6 +7,7 @@ requires-python = ">=3.14"
 dependencies = [
     "mypy>=2.4.0",
     "pre-commit>=4.6.2",
+    "pydantic>=2.13.5",
     "ruff>=0.16.10",
 ]
 
@@ -35,10 +36,10 @@ select = ["E", "F", "I"]  # Error, Pyflakes, ISort
 quote-style = "double"
 
 [tool.mypy]
-python_version = ">=3.14"
+python_version = "3.14"
 strict = true
 warn_return_any = true
 warn_unused_configs = true
-
 mypy_path = "src"
 explicit_package_bases=true
+plugins=["pydantic.mypy"]
