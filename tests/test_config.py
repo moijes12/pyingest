@@ -29,7 +29,7 @@ def test_PostgresSinkConfig_creation() -> None:
         k = PostgresSinkConfig(
             type="postgres",
             dsn_env="PYINGEST_PG_DSN",
-            schema="public",
+            schema_name="public",
             table="orders",
             conflict_strategy=strategy,
         )
@@ -38,11 +38,22 @@ def test_PostgresSinkConfig_creation() -> None:
         assert k.schema_name == "public"
 
 
+def test_PostgresSinkConfig_creation_create_schema_by_name() -> None:
+    k = PostgresSinkConfig(
+        type="postgres",
+        dsn_env="PYINGEST_PG_DSN",
+        schema_name="public",
+        table="orders",
+    )
+    assert type(k) is PostgresSinkConfig
+    assert k.schema_name == "public"
+
+
 def test_PostgresSinkConfig_creation_default_strategy() -> None:
     k = PostgresSinkConfig(
         type="postgres",
         dsn_env="PYINGEST_PG_DSN",
-        schema="public",
+        schema_name="public",
         table="orders",
     )
     assert type(k) is PostgresSinkConfig
@@ -55,7 +66,7 @@ def test_PostgresSinkConfig_creation_invalid_table() -> None:
         PostgresSinkConfig(
             type="postgres",
             dsn_env="PYINGEST_PG_DSN",
-            schema="public",
+            schema_name="public",
             table="public:orders",
         )
 
@@ -65,7 +76,7 @@ def test_PostgresSinkConfig_creation_invalid_conflict_strategy() -> None:
         PostgresSinkConfig(
             type="postgres",
             dsn_env="PYINGEST_PG_DSN",
-            schema="public",
+            schema_name="public",
             table="orders",
             conflict_strategy="foo",
         )
